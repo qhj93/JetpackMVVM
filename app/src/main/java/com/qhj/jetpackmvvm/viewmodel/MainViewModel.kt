@@ -16,7 +16,7 @@ class MainViewModel : BaseViewModel(){
     private val repository: MainRepository by lazy { MainRepository() }
 
     fun getImgList(): LiveData<GankBean> {
-        return getData { repository.getRepositoryData() }
+        return request(true) { repository.getRepositoryData() }
     }
 
     fun saveData(imgUrl: String){

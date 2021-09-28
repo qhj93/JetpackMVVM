@@ -1,7 +1,6 @@
 package com.qhj.base.mvvm
 
 import android.net.ParseException
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -23,17 +22,14 @@ import javax.net.ssl.SSLException
  */
 open class BaseViewModel : ViewModel(){
 
-    fun <T> getData(block: suspend () -> Flow<T>) = liveData {
+    fun <T> request(showLoading: Boolean = false, block: suspend () -> Flow<T>) = liveData {
         block().onStart {
-            Log.d("xxx", "onStart")
-            MyLoading.instance.showLoading()
+            if (showLoading) MyLoading.instance.showLoading()
         }.catch {
             handleException(it)
         }.onCompletion {
-            Log.d("xxx", "onCompletion")
-            MyLoading.instance.dismiss()
+            if (showLoading) MyLoading.instance.dismiss()
         }.collect {
-            Log.d("xxx", "collect")
             emit(it)
         }
     }
