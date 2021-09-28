@@ -1,0 +1,4 @@
+include ':libraryA'
+include ':base'
+include ':app'
+rootProject.name = "JetpackMVVM"

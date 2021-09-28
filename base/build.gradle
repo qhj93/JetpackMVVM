@@ -1,0 +1,36 @@
+import com.qhj.gradle.dependencies.AndroidX
+import com.qhj.gradle.dependencies.Dependencies
+import com.qhj.gradle.dependencies.KotlinX
+
+plugins {
+    id 'com.android.library'
+    id 'com.qhj.common.plugin'
+}
+
+android {
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    api fileTree(dir: "libs", include: ["*.jar"])
+    api AndroidX.appcompat
+    api AndroidX.coreKtx
+    api AndroidX.activityKtx
+    api AndroidX.fragmentKtx
+    api AndroidX.constraintLayout
+    api AndroidX.Datastore
+    api AndroidX.multidex
+    api AndroidX.Lifecycle.liveDataKtx
+    api AndroidX.Lifecycle.viewModelKtx
+    api AndroidX.Lifecycle.runtimeKtx
+    api KotlinX.coroutinesAndroid
+    api Dependencies.material
+    api Dependencies.coil
+    api Dependencies.gson
+    api Dependencies.Retrofit.retrofit
+    api Dependencies.Retrofit.retrofitConverterGson
+    api Dependencies.Arouter.arouter
+    kapt Dependencies.Arouter.arouterCompiler
+}

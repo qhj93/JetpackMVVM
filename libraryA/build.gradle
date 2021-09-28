@@ -1,0 +1,17 @@
+import com.qhj.gradle.dependencies.Dependencies
+
+plugins {
+    id 'com.android.library'
+    id 'com.qhj.common.plugin'
+}
+
+android {
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation(project(":base"))
+    kapt Dependencies.Arouter.arouterCompiler
+}

@@ -1,0 +1,23 @@
+import com.qhj.gradle.dependencies.BuildConfig
+import com.qhj.gradle.dependencies.Dependencies
+
+plugins {
+    id 'com.android.application'
+    id 'com.qhj.common.plugin'
+}
+
+android {
+    defaultConfig {
+        applicationId BuildConfig.applicationId
+        multiDexEnabled true
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation(project(":base"))
+    implementation(project(":libraryA"))
+    kapt Dependencies.Arouter.arouterCompiler
+}
