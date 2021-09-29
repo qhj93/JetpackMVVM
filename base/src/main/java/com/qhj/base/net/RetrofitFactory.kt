@@ -9,15 +9,11 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by 7in on 2021-09-28 9:40
  */
-class RetrofitFactory {
+class RetrofitFactory private constructor(){
 
     companion object{
-        fun getInstance() = SingletonHolder.INSTANCE
+        val instance: RetrofitFactory by lazy(LazyThreadSafetyMode.SYNCHRONIZED){ RetrofitFactory() }
         private lateinit var retrofit: Retrofit
-    }
-
-    private object SingletonHolder{
-        val INSTANCE = RetrofitFactory()
     }
 
     init {

@@ -13,7 +13,7 @@ class MyLoading private constructor(){
         val instance: MyLoading by lazy(LazyThreadSafetyMode.SYNCHRONIZED){ MyLoading() }
     }
 
-    fun showLoading(){
+    fun show(){
         if (dialog!=null && dialog!!.isShowing){
             if (dialog!!.context == TopActivityManager.instance.getTopActivity()){
                 return

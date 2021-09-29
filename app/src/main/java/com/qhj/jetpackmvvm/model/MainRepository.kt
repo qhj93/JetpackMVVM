@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
  */
 class MainRepository : BaseRepository(){
     suspend fun getRepositoryData() : Flow<GankBean> {
-        val api = RetrofitFactory.getInstance().create(MyApi::class.java)
+        val api = RetrofitFactory.instance.create(MyApi::class.java)
         return request { api.getData() }
     }
 }

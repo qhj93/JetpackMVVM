@@ -24,7 +24,7 @@ open class BaseViewModel : ViewModel(){
 
     fun <T> request(showLoading: Boolean = false, block: suspend () -> Flow<T>) = liveData {
         block().onStart {
-            if (showLoading) MyLoading.instance.showLoading()
+            if (showLoading) MyLoading.instance.show()
         }.catch {
             handleException(it)
         }.onCompletion {
