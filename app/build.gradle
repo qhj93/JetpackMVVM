@@ -10,6 +10,10 @@ android {
     defaultConfig {
         applicationId BuildConfig.applicationId
         multiDexEnabled true
+        resConfigs "zh-rCN"
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a'
+        }
     }
     kotlinOptions {
         jvmTarget = '1.8'
