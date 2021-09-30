@@ -22,7 +22,7 @@ import javax.net.ssl.SSLException
  */
 open class BaseViewModel : ViewModel(){
 
-    fun <T> request(showLoading: Boolean = false, block: suspend () -> Flow<T>) = liveData {
+    fun <T> executeLiveData(showLoading: Boolean = false, block: suspend () -> Flow<T>) = liveData {
         block().onStart {
             if (showLoading) MyLoading.instance.show()
         }.catch {
