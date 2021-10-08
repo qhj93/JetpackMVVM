@@ -12,7 +12,7 @@ android {
         multiDexEnabled true
         resConfigs "zh-rCN"
         ndk {
-            abiFilters 'armeabi', 'armeabi-v7a'
+            abiFilters 'armeabi-v7a'
         }
     }
     kotlinOptions {
