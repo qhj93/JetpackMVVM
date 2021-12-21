@@ -1,5 +1,6 @@
 package com.qhj.jetpackmvvm.model
 
+import com.qhj.base.net.ApiResponse
 import com.qhj.jetpackmvvm.bean.GankBean
 import retrofit2.http.GET
 
@@ -9,4 +10,7 @@ import retrofit2.http.GET
 interface MyApi {
     @GET("random/data/福利/20")
     suspend fun getData() : GankBean
+
+    @GET("xxx")
+    suspend fun getData2() : ApiResponse<Any>
 }

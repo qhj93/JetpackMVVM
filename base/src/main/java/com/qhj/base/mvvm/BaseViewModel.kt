@@ -4,11 +4,15 @@ import android.net.ParseException
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonParseException
 import com.google.gson.stream.MalformedJsonException
 import com.qhj.base.manager.TopActivityManager
+import com.qhj.base.net.ApiResponse
+import com.qhj.base.net.StateLiveData
 import com.qhj.base.widget.MyLoading
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import org.apache.http.conn.ConnectTimeoutException
 import org.json.JSONException
 import retrofit2.HttpException
@@ -57,6 +61,13 @@ open class BaseViewModel : ViewModel(){
             else -> {
                 Toast.makeText(TopActivityManager.instance.getTopActivity(), "未知错误，请稍后再试", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    //第二种网络请求封装方式
+    fun <T> execute(liveData: StateLiveData<T>, block: suspend () -> ApiResponse<T>) {
+        viewModelScope.launch {
+            liveData.value = block.invoke()
         }
     }
 

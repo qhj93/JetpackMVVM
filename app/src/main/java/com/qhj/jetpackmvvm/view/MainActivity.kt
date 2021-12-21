@@ -1,5 +1,6 @@
 package com.qhj.jetpackmvvm.view
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -45,6 +46,20 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(ActivityMa
                     EventBus.instance.with<String>(EventKey.SHOW_IMG).post(bean.url)
                     delay(1000)
                 }
+            }
+        }
+
+        //第二种网络请求封装方式
+        viewModel.getData2()
+        viewModel.liveData.observer(this){
+            onSuccess {
+                Log.d("xxx", "onSuccess: ")
+            }
+            onFailure { code, msg ->
+                Log.d("xxx", "onFailure: $code, $msg")
+            }
+            onError {
+                Log.d("xxx", "onError: ${it.message}")
             }
         }
     }
